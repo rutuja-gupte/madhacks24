@@ -1,4 +1,4 @@
-## Package developed by Colin Dewey for COMP SCI 576
+# # Package developed by Colin Dewey for COMP SCI 576
 
 class DirectedGraph:
     """Abstract base class for a directed graph.

@@ -1,4 +1,4 @@
-## Package developed by Colin Dewey for COMP SCI 576
+# # Package developed by Colin Dewey for COMP SCI 576
 
 def read_substitution_matrix(filename):
     """Reads a substitution matrix from a file.
