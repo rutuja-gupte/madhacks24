@@ -29,18 +29,19 @@
         <h2 class="text-center">Recommended Courses and Alignments</h2>
 
         <div class="row">
-            {% for key, value in alignment_results %}
+            <!-- Adjusted loop for unpacking only major and course_pairs -->
+            {% for major, course_pairs, _ in alignment_results %}
                 <div class="col-md-6">
                     <div class="card mb-4 p-3 shadow-custom">
                         <div class="card-body">
                             <div class="card-title d-flex justify-content-between align-items-center">
-                                <span><span class="icon">📘</span>{{ key }}</span>
+                                <span><span class="icon">📘</span>{{ major }}</span>
                                 <!-- View Details Button -->
-                                <button class="btn btn-info btn-sm" onclick="toggleDetails('{{ key|replace(' ', '_') }}')">View Details</button>
+                                <button class="btn btn-info btn-sm" onclick="toggleDetails('{{ major|replace(' ', '_') }}')">View Details</button>
                             </div>
 
                             <!-- Table for Completed vs. Possible Courses (Initially hidden) -->
-                            <div id="{{ key|replace(' ', '_') }}" style="display: none;">
+                            <div id="{{ major|replace(' ', '_') }}" style="display: none;">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -49,15 +50,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for course_pair in value %}
+                                        {% for course_pair in course_pairs %}
                                             {% if course_pair[1] != '-' %}
                                                 <tr>
                                                     <td>
                                                         {% if course_pair[0] == course_pair[1] %}
                                                             {{ course_pair[0] }}
                                                         {% else %}
-                                                            <!-- Empty if not matching and second element is not - -->
-<!--                                                             &nbsp; -->
+                                                            &nbsp;
                                                         {% endif %}
                                                     </td>
                                                     <td>

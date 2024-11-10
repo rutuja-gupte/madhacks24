@@ -33,13 +33,14 @@ def process_pdf():
         # Align courses and prepare results
         alignment_results = align.align(completed_courses)
         
-#         print(alignment_results)
+        # Sorting alignment_results by score (third element in each tuple)
+        sorted_alignment_results = sorted(alignment_results, key=lambda x: x[2], reverse=True)  # Sorting by score, descending order
         
-        # Pass the alignment results to a results page
-        return alignment_results
-#         return render_template('results.html', alignment_results=alignment_results, completed_courses=completed_courses)
+        # Pass the sorted alignment results to the template
+        return render_template('results.html', alignment_results=sorted_alignment_results, completed_courses=completed_courses)
 
     return jsonify({"error": "Invalid file format"}), 400
+
 
 # Helper function to check file extension
 def allowed_file(filename):
